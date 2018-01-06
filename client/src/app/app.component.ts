@@ -9,15 +9,19 @@ import { Observable } from 'rxjs/Observable';
   providers: [GeolocationService]
 })
 export class AppComponent implements OnInit {
-  public coords = {}
+  
+  public latitude : number
+  public longitude : number
   constructor(private geolocationService: GeolocationService) { }
 
   ngOnInit() {
-    this.coords = this.geolocationService.getLocation().subscribe(
+    this.geolocationService.getLocation().subscribe(
       function(position) {
-        this.coords.latitude  = position.coords.latitude;
-        this.coords.longitude = position.coords.longitude;
-         console.log("Position"+this.coords) },
+        this.latitude  = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+         console.log("latitude : "+position.coords.latitude) 
+         console.log("longitude : "+position.coords.longitude) 
+        },
       function(error) { console.log("error "+error)}
     );
     

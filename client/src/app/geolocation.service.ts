@@ -17,9 +17,10 @@ export class GeolocationService {
     geoLocationOptions = geoLocationOptions || { timeout: 5000 };
     return Observable.create(observer => {
       if (window.navigator && window.navigator.geolocation) {
-        window.navigator.geolocation.watchPosition(
+        window.navigator.geolocation.getCurrentPosition(
           (position) => {
             observer.next(position);
+            observer.complete();
           },
           (error) => {
             switch (error.code) {
@@ -40,7 +41,7 @@ export class GeolocationService {
       else {
         observer.error(GEOLOCATION_ERRORS['errors.location.unsupportedBrowser']);
        }
-    }).map(res => res.json)
+    })
   }
 
 }
