@@ -8,6 +8,7 @@ public class UserDTO implements Serializable {
 
 	private String username;
     private String password;
+    private String name;
     
 	public UserDTO() {
 		super();
@@ -27,6 +28,14 @@ public class UserDTO implements Serializable {
 
 	public void setPassword(final String password) {
 		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(final String name) {
+		this.name = name;
 	}
     
     

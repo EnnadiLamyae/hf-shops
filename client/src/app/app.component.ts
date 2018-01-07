@@ -1,6 +1,7 @@
 import { Component , OnInit } from '@angular/core';
 import { GeolocationService } from './geolocation.service';
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router/src/router_state';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,9 @@ export class AppComponent implements OnInit {
   
   public latitude : number
   public longitude : number
-  constructor(private geolocationService: GeolocationService) { }
+  constructor(private geolocationService: GeolocationService,
+              private route: ActivatedRoute,
+              private location: Location) { }
 
   ngOnInit() {
     this.geolocationService.getLocation().subscribe(

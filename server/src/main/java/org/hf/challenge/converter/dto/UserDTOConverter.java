@@ -16,6 +16,7 @@ public class UserDTOConverter implements Converter<UserDTO, User> {
 		final User user = new User();
 
         user.setUsername(dto.getUsername());
+        user.setName(dto.getName());
         user.setPassword(dto.getPassword());
         user.setAccountNonExpired(false);
         user.setCredentialsNonExpired(false);
