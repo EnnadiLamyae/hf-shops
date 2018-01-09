@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -19,6 +20,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { ShopsComponent } from './shops/shops.component';
 import { from } from 'rxjs/observable/from';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { from } from 'rxjs/observable/from';
     TestimonialComponent,
     SignupComponent,
     SigninComponent,
-    ShopsComponent
+    ShopsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input ,Output,EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import {NgForm} from '@angular/forms';
 
@@ -14,6 +14,9 @@ import { User } from '../user'
 export class SignupComponent implements OnInit {
 
   user = new User("lolo","lolo@g.co","123456")
+  name:string
+  username:string
+  password:string
 
   submitted = false;
   constructor(private authentication: AuthenticationService) { }
@@ -24,8 +27,14 @@ export class SignupComponent implements OnInit {
    signup(): void {
     this.authentication.signup(this.user);
   }
-  onSubmit(f: NgForm) {
-   this.signup()
+
+
+
+  onSubmit() {
+  //  this.signup()
+  console.log("name : "+this.user.name)
+  console.log("username : "+this.user.username)
+  console.log("password : "+this.user.password)
   }
 
 }

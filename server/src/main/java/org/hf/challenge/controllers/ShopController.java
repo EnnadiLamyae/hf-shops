@@ -7,7 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.data.geo.Point;
+
 
 @RestController
 public class ShopController {
@@ -18,9 +22,10 @@ public class ShopController {
 	public ShopController(final ShopService service) {
 		this.service = service;
 	}
-	@RequestMapping(value="/shops",method=RequestMethod.GET)
-	public ResponseEntity<?> getShops(){
-		 return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+	@RequestMapping(value="/api/shops",method=RequestMethod.GET)
+	public ResponseEntity<?> getShops(@RequestParam  double latitude ,@RequestParam   double longitude){
+//		Point point = new Point(longitude,latitude);
+		 return new ResponseEntity<>(service.findNearby(longitude,latitude), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/shops/{id}",method=RequestMethod.GET)

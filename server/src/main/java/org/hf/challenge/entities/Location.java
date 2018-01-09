@@ -2,10 +2,9 @@ package org.hf.challenge.entities;
 
 import java.io.Serializable;
 
-public class Location implements Serializable{
+public class Location implements Serializable {
 
-	private static final long serialVersionUID = 6337055089285009909L;
-	
+	private static final long serialVersionUID = -6649945949790832913L;
 	private String type;
 	private Double coordinates[];
 	
@@ -28,6 +27,8 @@ public class Location implements Serializable{
 	public void setCoordinates(Double[] coordinates) {
 		this.coordinates = coordinates;
 	}
+	
+	
 	
 	
 }
