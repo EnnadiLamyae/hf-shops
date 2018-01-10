@@ -1,10 +1,10 @@
 import { Component, OnInit ,Input ,Output,EventEmitter } from '@angular/core';
-import { Location } from '@angular/common';
-import {NgForm} from '@angular/forms';
+import {FormsModule } from '@angular/forms';
 
 import {AuthenticationService} from '../authentication.service';
 
 import { User } from '../user'
+
 
 @Component({
   selector: 'app-signup',
@@ -13,28 +13,18 @@ import { User } from '../user'
 })
 export class SignupComponent implements OnInit {
 
-  user = new User("lolo","lolo@g.co","123456")
-  name:string
-  username:string
-  password:string
+  user = new User()
 
-  submitted = false;
   constructor(private authentication: AuthenticationService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  signup(user:User): any {
+    this.authentication.signup(user)
   }
-
-   signup(): void {
-    this.authentication.signup(this.user);
-  }
-
-
 
   onSubmit() {
-  //  this.signup()
-  console.log("name : "+this.user.name)
-  console.log("username : "+this.user.username)
-  console.log("password : "+this.user.password)
+   this.signup(this.user)
   }
 
 }

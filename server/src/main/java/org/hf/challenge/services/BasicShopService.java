@@ -6,12 +6,16 @@ import java.util.List;
 import org.hf.challenge.entities.Shop;
 import org.hf.challenge.repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Service;
 
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
@@ -55,7 +59,7 @@ public class BasicShopService implements ShopService {
 	}
 
 	@Override
-	public List<Shop> findNearby(double lon, double lat) {
+	public PagedListHolder<Shop> findNearby(double lon, double lat,int page) {
 
 		List<Shop> shops=null;
 		DBObject geoQuery = buildGeoQuery(lon, lat);
@@ -67,7 +71,11 @@ public class BasicShopService implements ShopService {
 			Shop shop= mongoTemplate.getConverter().read(Shop.class, empDBObject);
 			shops.add(shop);
 		}
-		return shops;
+		PagedListHolder<Shop> shopsPage = new PagedListHolder<>(shops);
+		shopsPage.setPageSize(12); 
+		shopsPage.setPage(page); 
+		
+		return shopsPage;
 	}
 
 }
