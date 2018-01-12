@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../user';
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signin',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  user = new User()
+  
+  constructor(private authentication: AuthenticationService ,private router:Router) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  signin(user:User): any {
+    this.authentication.signin(user)
   }
 
-}
+  onSubmit() {
+    this.signin(this.user)
+    this.router.navigate(['/shops'])
+    window.location.reload();
+  }
+  
+  }

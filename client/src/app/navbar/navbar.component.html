@@ -5,17 +5,23 @@
       </a>
   </logo>
   <links>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" [hidden]="!connected" >
       <li class="nav-item">
-        <a  routerLink="/shops" class="nav-link  waves-light" mdbRippleRadius>
-          <span class="font-bold">SHOPS</span>
+        <a  routerLink="/shops" routerLinkActive="active" class="nav-link  waves-light" mdbRippleRadius>
+          <span class="font-bold">NEARBY SHOPS</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a  routerLink="/shops" routerLinkActive="active" class="nav-link  waves-light" mdbRippleRadius>
+          <span class="font-bold">PREFERRED SHOPS</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a  (click)="signout()"  class="nav-link  waves-light" mdbRippleRadius>
+          <span class="font-bold">SIGN OUT</span>
         </a>
       </li>
     </ul>
-    <!-- <button  type="button" class="btn btn-default waves-light ml-auto" mdbRippleRadius>
-      <i class="fa fa-github" aria-hidden="true"></i>  
-      Github
-    </button> -->
   </links>
 </mdb-navbar>
 

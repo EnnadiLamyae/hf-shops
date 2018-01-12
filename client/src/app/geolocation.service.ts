@@ -20,7 +20,7 @@ export class GeolocationService {
         window.navigator.geolocation.watchPosition(
           (position) => {
             observer.next(position);
-            // observer.complete();
+            observer.complete();
           },
           (error) => {
             switch (error.code) {
