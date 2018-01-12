@@ -1,6 +1,9 @@
 package org.hf.challenge.dto;
 
 import java.io.Serializable;
+import java.util.List;
+
+import org.hf.challenge.entities.Shop;
 
 public class UserDTO implements Serializable {
 
@@ -10,6 +13,9 @@ public class UserDTO implements Serializable {
     private String password;
     private String name;
     
+    private List<Shop> preferredShops;
+   
+
 	public UserDTO() {
 		super();
 	}
@@ -38,5 +44,11 @@ public class UserDTO implements Serializable {
 		this.name = name;
 	}
     
-    
+	public List<Shop> getPreferredShops() {
+		return preferredShops;
+	}
+
+	public void setPreferredShops(List<Shop> preferredShops) {
+		this.preferredShops = preferredShops;
+	}
 }

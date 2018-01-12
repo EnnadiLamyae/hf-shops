@@ -11,7 +11,6 @@ public interface ShopService {
 
 	public Shop find(String id);
 	public Shop findByName(String name);
-	//public List<Shop> findByLocationNear(Point point);
 	public List<Shop> findAll();
 	public List<Shop> findNearby(double lon, double lat);
 	

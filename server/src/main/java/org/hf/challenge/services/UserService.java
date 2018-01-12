@@ -2,6 +2,7 @@ package org.hf.challenge.services;
 
 import java.util.List;
 
+import org.hf.challenge.entities.Shop;
 import org.hf.challenge.entities.User;
 
 public interface UserService {
@@ -11,5 +12,6 @@ public interface UserService {
 	 User findByUsername(String userName);
 	 List<User> findAll();
 	 User update(String id, User object);
-	 String delete(String id);
+	 String delete(String id); 
+	 List<Shop> likeShop(String userId,String shopiId);
 }

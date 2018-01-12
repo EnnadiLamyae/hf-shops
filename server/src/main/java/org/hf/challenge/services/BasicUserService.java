@@ -3,7 +3,9 @@ package org.hf.challenge.services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hf.challenge.entities.Shop;
 import org.hf.challenge.entities.User;
+import org.hf.challenge.repositories.ShopRepository;
 import org.hf.challenge.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,12 @@ import org.springframework.stereotype.Service;
 public class BasicUserService implements UserService {
 
 	private final UserRepository repository;
+	private final ShopRepository shopRepository;
 	
 	@Autowired
-    public BasicUserService(final UserRepository repository) {
+    public BasicUserService(final UserRepository repository,final ShopRepository shopRepository) {
         this.repository = repository;
+        this.shopRepository = shopRepository;
     }
 	@Override
 	public User create(User user) {
@@ -55,6 +59,15 @@ public class BasicUserService implements UserService {
 	public String delete(String id) {
 		repository.delete(id);
         return id;
+	}
+	@Override
+	public List<Shop> likeShop(String userId,String shopiId) {
+		Shop shop = this.shopRepository.findOne(shopiId);
+		User user = this.repository.findOne(userId);
+		List<Shop> shops= user.getPreferredShops();
+		shops.add(shop);
+		repository.save(user);
+		return shops;
 	}
 
 }

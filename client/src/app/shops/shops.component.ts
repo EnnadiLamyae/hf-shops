@@ -15,15 +15,10 @@ export class ShopsComponent implements OnInit , OnDestroy{
   private shops: any
   private latitude:number
   private longitude:number
-  private page = 0
   private total: number
   private pageSize = 12
  
-  
   constructor(private http:Http ,private geolocationService: GeolocationService) { }
-
-
-  
 
   getCoordinates():any{
     this.geolocationService.getLocation().subscribe(
@@ -36,7 +31,7 @@ export class ShopsComponent implements OnInit , OnDestroy{
         },
       function(error) { console.log("error "+error)}
     )}
-  getShops(page:number,latitude:number,longitude:number) {
+  getShops(latitude:number,longitude:number) {
     let promise = new Promise((resolve, reject) => {
       if(latitude != 0 && longitude != 0)
         this.http.get(this.shopsUrl+"latitude="+latitude+"&longitude="+longitude, {headers: this.headers})
@@ -54,16 +49,19 @@ export class ShopsComponent implements OnInit , OnDestroy{
     })
     return promise
   }
-  getShopsByPage(page:number){
-    this.getShops(page,this.latitude,this.longitude)
-  }
   
+  dislike(id: string){
+    console.log("Dislike  "+ id)
+  }
+  like(id: string){
+    console.log("Like  "+ id)
+  }
   ngOnInit() {
     this.getCoordinates()
     this.latitude = parseFloat(localStorage.getItem('current-latitude'))
     this.longitude = parseFloat(localStorage.getItem('current-longitude'))
     this.total =parseFloat(localStorage.getItem('total'))
-    this.getShops(this.page,this.latitude,this.longitude)
+    this.getShops(this.latitude,this.longitude)
     console.log('pages: '+this.total)
   }
 

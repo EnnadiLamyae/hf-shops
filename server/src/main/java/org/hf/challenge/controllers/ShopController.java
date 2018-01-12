@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.hf.challenge.entities.Shop;
 import org.hf.challenge.services.ShopService;
+import org.hf.challenge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.http.HttpStatus;
@@ -25,10 +26,12 @@ import org.springframework.data.geo.Point;
 public class ShopController {
 	
 	private final ShopService service;
+	private final UserService userService;
 	
 	@Autowired
-	public ShopController(final ShopService service) {
+	public ShopController(final ShopService service,final UserService userService) {
 		this.service = service;
+		this.userService = userService;
 	}
 	@RequestMapping(value="/api/shops",method=RequestMethod.GET)
 	public ResponseEntity<?> getShops(@RequestParam  double latitude ,@RequestParam  double longitude /*,@RequestParam int page*/){
@@ -39,12 +42,17 @@ public class ShopController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/shops/{id}",method=RequestMethod.GET)
-	public ResponseEntity<?> shopById(@PathVariable String id){
+	@RequestMapping(value="/shops/like",method=RequestMethod.GET)
+	public ResponseEntity<?> likeShop(@RequestParam String user, @RequestParam String shop){
+		 return new ResponseEntity<>(userService.likeShop(user, shop), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/shops/dislike/{userId}",method=RequestMethod.GET)
+	public ResponseEntity<?> dislikeShop(@PathVariable String id){
 		 return new ResponseEntity<>(service.find(id), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/shops/{name}",method=RequestMethod.GET)
+	@RequestMapping(value="/shops/preferred",method=RequestMethod.GET)
 	public ResponseEntity<?> shopByName(@PathVariable String name){
 		 return new ResponseEntity<>(service.findByName(name), HttpStatus.OK);
 	}

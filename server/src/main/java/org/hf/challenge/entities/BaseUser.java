@@ -1,6 +1,7 @@
 package org.hf.challenge.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,6 +14,8 @@ public class BaseUser implements Serializable {
 	private String id;
 	private String name;
 	private String createdAt;
+	private List<Shop> preferredShops;
+	private List<Shop> dislikedShops;
 	
 	public BaseUser() {
 		super();
@@ -46,5 +49,22 @@ public class BaseUser implements Serializable {
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
+
+	public List<Shop> getPreferredShops() {
+		return preferredShops;
+	}
+
+	public void setPreferredShops(List<Shop> preferredShops) {
+		this.preferredShops = preferredShops;
+	}
+
+	public List<Shop> getDislikedShops() {
+		return dislikedShops;
+	}
+
+	public void setDislikedShops(List<Shop> dislikedShops) {
+		this.dislikedShops = dislikedShops;
+	}
+	
 
 }
