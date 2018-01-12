@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http ,Headers} from '@angular/http';
+import { Router } from '@angular/router';
 
 import { User } from './user';
+
 
 
 @Injectable()
@@ -11,7 +13,7 @@ export class AuthenticationService {
   private signinUrl = '/api/signin'
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,private router:Router) { }
 
   signup(user: User): Promise<User> {
     return this.http
@@ -31,6 +33,8 @@ export class AuthenticationService {
                localStorage.setItem("current-username",user.username)
                localStorage.setItem("current-token",res.json().token)
                localStorage.setItem("current-connected", 'true')
+               this.router.navigate(['/shops'])
+               window.location.reload();
               console.log("Token : "+ res.json().token)
             })
             .catch(this.handleError)
@@ -41,6 +45,8 @@ export class AuthenticationService {
     localStorage.removeItem('current-username')
     localStorage.removeItem('current-token')
     localStorage.removeItem('current-connected')
+    window.location.reload();
+    this.router.navigate([''])
   }
 
   private handleError(error: any): Promise<any> {

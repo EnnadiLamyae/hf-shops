@@ -31,11 +31,11 @@ public class ShopController {
 		this.service = service;
 	}
 	@RequestMapping(value="/api/shops",method=RequestMethod.GET)
-	public ResponseEntity<?> getShops(@RequestParam  double latitude ,@RequestParam  double longitude ,@RequestParam int page){
-		 PagedListHolder<Shop> shopsPage = service.findNearby(longitude,latitude,page);
+	public ResponseEntity<?> getShops(@RequestParam  double latitude ,@RequestParam  double longitude /*,@RequestParam int page*/){
+		 List<Shop> shops = service.findNearby(longitude,latitude);
 		 List<Object> response = new ArrayList<>();
-		 response.add(shopsPage.getPageList());
-		 response.add(shopsPage.getPageCount());
+		 response.add(shops);
+		 response.add(shops.size());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	

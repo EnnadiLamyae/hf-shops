@@ -59,7 +59,7 @@ public class BasicShopService implements ShopService {
 	}
 
 	@Override
-	public PagedListHolder<Shop> findNearby(double lon, double lat,int page) {
+	public List<Shop> findNearby(double lon, double lat) {
 
 		List<Shop> shops=null;
 		DBObject geoQuery = buildGeoQuery(lon, lat);
@@ -71,11 +71,11 @@ public class BasicShopService implements ShopService {
 			Shop shop= mongoTemplate.getConverter().read(Shop.class, empDBObject);
 			shops.add(shop);
 		}
-		PagedListHolder<Shop> shopsPage = new PagedListHolder<>(shops);
-		shopsPage.setPageSize(12); 
-		shopsPage.setPage(page); 
+//		PagedListHolder<Shop> shopsPage = new PagedListHolder<>(shops);
+//		shopsPage.setPageSize(12); 
+//		shopsPage.setPage(page); 
 		
-		return shopsPage;
+		return shops;
 	}
 
 }

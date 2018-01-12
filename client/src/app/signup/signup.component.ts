@@ -1,6 +1,5 @@
 import { Component, OnInit ,Input ,Output,EventEmitter } from '@angular/core';
 import {FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import {AuthenticationService} from '../authentication.service';
 
@@ -14,7 +13,7 @@ import { User } from '../user'
 export class SignupComponent implements OnInit {
 
   user = new User()
-  constructor(private authentication: AuthenticationService,private router: Router) { }
+  constructor(private authentication: AuthenticationService) { }
 
   ngOnInit() { }
 
@@ -24,8 +23,6 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
    this.signup(this.user)
-   this.router.navigate(['/shops'])
-   window.location.reload();
   }
 
 }

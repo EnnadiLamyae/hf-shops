@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { User } from '../user';
+
 import { AuthenticationService } from '../authentication.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class SigninComponent implements OnInit {
 
   user = new User()
   
-  constructor(private authentication: AuthenticationService ,private router:Router) { }
+  constructor(private authentication: AuthenticationService) { }
 
   ngOnInit() { }
 
@@ -23,8 +24,6 @@ export class SigninComponent implements OnInit {
 
   onSubmit() {
     this.signin(this.user)
-    this.router.navigate(['/shops'])
-    window.location.reload();
   }
   
   }

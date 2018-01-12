@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hf.challenge.entities.Shop;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.domain.Page;
 
 
 public interface ShopService {
@@ -12,6 +13,6 @@ public interface ShopService {
 	public Shop findByName(String name);
 	//public List<Shop> findByLocationNear(Point point);
 	public List<Shop> findAll();
-	public PagedListHolder<Shop> findNearby(double lon, double lat,int page);
+	public List<Shop> findNearby(double lon, double lat);
 	
 }

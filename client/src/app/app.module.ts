@@ -6,9 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { GeolocationService } from './geolocation.service';
-import { DataService } from './data.service';
 import {AuthenticationService} from './authentication.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -41,10 +41,11 @@ import { HomeComponent } from './home/home.component';
     MDBBootstrapModule.forRoot(),
     HttpModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [GeolocationService,DataService,AuthenticationService],
+  providers: [GeolocationService,AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

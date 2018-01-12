@@ -18,8 +18,6 @@ export class HomeComponent implements OnInit {
       this.connected = true
     else 
       this.connected = false
-      
-    console.log("state : "+this.connected)
   }
 
 }
