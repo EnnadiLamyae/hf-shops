@@ -13,5 +13,5 @@ public interface UserService {
 	 List<User> findAll();
 	 User update(String id, User object);
 	 String delete(String id); 
-	 List<Shop> likeShop(String userId,String shopiId);
+	
 }

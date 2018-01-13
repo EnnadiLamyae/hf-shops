@@ -1,10 +1,11 @@
 package org.hf.challenge.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 @Document(collection="users")
 public class BaseUser implements Serializable {
@@ -14,8 +15,8 @@ public class BaseUser implements Serializable {
 	private String id;
 	private String name;
 	private String createdAt;
-	private List<Shop> preferredShops;
-	private List<Shop> dislikedShops;
+	private  Map<String,Shop> preferredShops = null;
+	private  Map<String,Shop> dislikedShops = null;
 	
 	public BaseUser() {
 		super();
@@ -50,19 +51,19 @@ public class BaseUser implements Serializable {
 		this.createdAt = createdAt;
 	}
 
-	public List<Shop> getPreferredShops() {
+	public  Map<String,Shop> getPreferredShops() {
 		return preferredShops;
 	}
 
-	public void setPreferredShops(List<Shop> preferredShops) {
+	public void setPreferredShops( Map<String,Shop> preferredShops) {
 		this.preferredShops = preferredShops;
 	}
 
-	public List<Shop> getDislikedShops() {
+	public  Map<String,Shop> getDislikedShops() {
 		return dislikedShops;
 	}
 
-	public void setDislikedShops(List<Shop> dislikedShops) {
+	public void setDislikedShops( Map<String,Shop> dislikedShops) {
 		this.dislikedShops = dislikedShops;
 	}
 	
