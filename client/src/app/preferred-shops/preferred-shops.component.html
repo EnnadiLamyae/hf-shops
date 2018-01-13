@@ -39,9 +39,8 @@
                           </a>
                           <h4 class="card-title"><strong><a href="">{{shop.name}}</a></strong></h4>
                           <div class="card-footer">
-                              <div class="right" style="display:inline-flex">
-                                  <button (click)="dislike(shop.id)" type="button" class="btn btn-default" mdbRippleRadius><i class="fa fa-thumbs-o-down"></i></button>
-                                  <button (click)="like(shop.name)" type="button" class="btn btn-danger" mdbRippleRadius><i class="fa fa-heart"></i></button>
+                              <div class="right">
+                                  <button  type="button" class="btn btn-danger" mdbRippleRadius><i class="fa fa-trash-o"></i>&nbsp;Remove</button>
                               </div>
                           </div>
                       </div>

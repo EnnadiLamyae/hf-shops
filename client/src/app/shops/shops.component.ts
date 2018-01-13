@@ -53,8 +53,8 @@ export class ShopsComponent implements OnInit , OnDestroy{
   dislike(id: string){
     console.log("Dislike  "+ id)
   }
-  like(name: string){
-    let body= "username="+localStorage.getItem('current-username')+"&name="+name
+  like(id: string){
+    let body= "username="+localStorage.getItem('current-username')+"&id="+id
     this.http.post(this.preferredShopsUrl,body,{headers: this.headers})
     .subscribe(res => {
       window.location.reload()
@@ -65,7 +65,7 @@ export class ShopsComponent implements OnInit , OnDestroy{
     this.getCoordinates()
     this.latitude = parseFloat(localStorage.getItem('current-latitude'))
     this.longitude = parseFloat(localStorage.getItem('current-longitude'))
-    this.total =parseFloat(localStorage.getItem('total'))
+    this.total = parseFloat(localStorage.getItem('total'))
     this.getShops(this.latitude,this.longitude)
     console.log('pages: '+this.total)
   }

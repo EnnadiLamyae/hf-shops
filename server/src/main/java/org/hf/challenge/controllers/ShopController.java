@@ -48,9 +48,9 @@ public class ShopController {
 	}
 	
 	@RequestMapping(value="/api/preferredShops/add",method=RequestMethod.POST)
-	public ResponseEntity<?> likeShop(@RequestParam String username, @RequestParam String name){
+	public ResponseEntity<?> likeShop(@RequestParam String username, @RequestParam String id){
 	    	User user = userService.findByUsername(username);
-	    	Shop shop = service.findByName(name);
+	    	Shop shop = service.find(id);
 	    	Map<String,Shop> shops = user.getPreferredShops();
 	    	shops.putIfAbsent(shop.getId(),shop);
 			user = userService.update(user.getId(), user);
