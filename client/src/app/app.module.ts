@@ -3,7 +3,6 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -22,6 +21,7 @@ import { SigninComponent } from './signin/signin.component';
 import { ShopsComponent } from './shops/shops.component';
 import { from } from 'rxjs/observable/from';
 import { HomeComponent } from './home/home.component';
+import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
 
 
 
@@ -33,11 +33,11 @@ import { HomeComponent } from './home/home.component';
     SignupComponent,
     SigninComponent,
     ShopsComponent,
-    HomeComponent
+    HomeComponent,
+    PreferredShopsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     MDBBootstrapModule.forRoot(),
     HttpModule,
     AppRoutingModule,

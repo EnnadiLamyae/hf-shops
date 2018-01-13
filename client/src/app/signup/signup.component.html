@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="md-form form-sm">
-                    <input mdbActive type="password" id="password" #password="ngModel" minlength="8" name="password" 
+                    <input mdbActive autocomplete type="password" id="password" #password="ngModel" minlength="8" name="password" 
                     [(ngModel)]="user.password" class="form-control" required [ngClass]="{
                         'text-danger': password.invalid && (password.dirty || password.touched), 
                         'text-success': password.valid && (password.dirty || password.touched)

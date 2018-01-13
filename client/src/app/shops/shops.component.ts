@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
 import { GeolocationService } from '../geolocation.service';
 
@@ -10,8 +9,9 @@ import { GeolocationService } from '../geolocation.service';
   styleUrls: ['./shops.component.scss']
 })
 export class ShopsComponent implements OnInit , OnDestroy{
-  private shopsUrl = '/api/shops?'
-  private headers = new Headers({'Content-Type': 'application/json','x-auth-token': localStorage.getItem('current-token')});
+  private shopsUrl = '/api/shops?username='
+  private preferredShopsUrl = '/api/preferredShops/add'
+  private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded','x-auth-token': localStorage.getItem('current-token')});
   private shops: any
   private latitude:number
   private longitude:number
@@ -33,8 +33,8 @@ export class ShopsComponent implements OnInit , OnDestroy{
     )}
   getShops(latitude:number,longitude:number) {
     let promise = new Promise((resolve, reject) => {
-      if(latitude != 0 && longitude != 0)
-        this.http.get(this.shopsUrl+"latitude="+latitude+"&longitude="+longitude, {headers: this.headers})
+      if(latitude != 0 && !isNaN(latitude) && !isNaN(longitude) && longitude != 0)
+        this.http.get(this.shopsUrl+localStorage.getItem('current-username')+"&latitude="+latitude+"&longitude="+longitude, {headers: this.headers})
               .toPromise()
               .then(
                 res => { 
@@ -53,8 +53,13 @@ export class ShopsComponent implements OnInit , OnDestroy{
   dislike(id: string){
     console.log("Dislike  "+ id)
   }
-  like(id: string){
-    console.log("Like  "+ id)
+  like(name: string){
+    let body= "username="+localStorage.getItem('current-username')+"&name="+name
+    this.http.post(this.preferredShopsUrl,body,{headers: this.headers})
+    .subscribe(res => {
+      window.location.reload()
+      console.log("added to preferred list ")
+    })
   }
   ngOnInit() {
     this.getCoordinates()

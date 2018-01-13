@@ -1,22 +1,22 @@
-import { Component , OnInit } from '@angular/core';
-import { GeolocationService } from './geolocation.service';
-import { Observable } from 'rxjs/Observable';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component , OnInit , OnDestroy } from '@angular/core';
+import { AuthenticationService } from './authentication.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [GeolocationService]
+  providers: [AuthenticationService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit , OnDestroy{
   
   
-  constructor() { }
+  constructor(private authentication: AuthenticationService) { }
 
   ngOnInit() {
-   
+  }
+
+  ngOnDestroy(){
+    this.authentication.signout()
   }
 }
