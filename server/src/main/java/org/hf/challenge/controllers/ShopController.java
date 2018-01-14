@@ -1,6 +1,9 @@
 package org.hf.challenge.controllers;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,10 +36,12 @@ public class ShopController {
 	@RequestMapping(value="/api/shops",method=RequestMethod.GET)
 	public ResponseEntity<?> getShops(@RequestParam String username, @RequestParam  double latitude ,@RequestParam  double longitude ){
 			 User user = userService.findByUsername(username);
-			 Map<String,Shop> evens = user.getPreferredShops();
+			 Map<String,Shop> preferred = user.getPreferredShops();
+			 Map<String,LocalDateTime> disliked = user.getDislikedShops();
 			 List<Shop> shops = service.findNearby(longitude,latitude);
+			 LocalDateTime current= LocalDateTime.now();
 			 final List<Shop> result = shops.stream()
-		     .filter(x -> !evens.containsKey(x.getId()))
+		     .filter(x -> !preferred.containsKey(x.getId()) && (disliked.containsKey(x.getId()) ? Duration.between(disliked.get(x.getId()), current).toHours() >= 2: true))
 		     .collect(Collectors.toList());
 			 List<Object> response = new ArrayList<>();
 			 response.add(result);
@@ -76,6 +81,17 @@ public class ShopController {
 		 response.add(user.getPreferredShops());
 		 response.add(user.getPreferredShops().size());
 		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/api/shops/dislike",method=RequestMethod.POST)
+	public ResponseEntity<?> dislikeShop(@RequestParam String username,@RequestParam String id){
+		User user = userService.findByUsername(username);
+    	Shop shop = service.find(id);
+    	Map<String,LocalDateTime> shops = user.getDislikedShops();
+    	LocalDateTime current = LocalDateTime.now();
+    	shops.putIfAbsent(shop.getId(),current);
+		user = userService.update(user.getId(), user);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

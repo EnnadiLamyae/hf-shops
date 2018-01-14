@@ -8,20 +8,15 @@
             </span> 
             ARROUND 
             <span class="cyan-text font-bold wow animated hinge infinite" data-wow-delay="0.9s"style="color:#30cfc0">
-                ME
+                YOU
             </span></h1>
-        <div class="row col-12">
-            <pagination-controls (pageChange)="p = $event" 
-            directionLinks="true"
-            autoHide="true"
-            previousLabel="Previous"
-            nextLabel="Next">
-            </pagination-controls>
-            <div class="text-right" >
-                <label for="pageSize" class="col-5"> Items per page </label>
+            <p class="text-center font-bold">
+                This is all shops near to your location sorted by distance .
+            </p>
+            <div class="text-right col-6 offset-6" >
+                <label for="pageSize" class="col-4"> Items per page </label>
                 <input type="text" class="input-alternate col-2" id="pageSize" name="pageSize" [(ngModel)]="pageSize" placeholder="Item per page" value="5">
             </div>
-        </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 mb-r" *ngFor="let shop of shops | paginate: { itemsPerPage: pageSize, currentPage: p,totalItems: total }">
                 <div class="card card-cascade narrower">
@@ -46,6 +41,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-6 offset-3">
+            <pagination-controls (pageChange)="p = $event" 
+        directionLinks="true"
+        autoHide="true"
+        previousLabel="Previous"
+        nextLabel="Next">
+        </pagination-controls>
         </div>
     </section>        
 </div>

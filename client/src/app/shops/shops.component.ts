@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 import { GeolocationService } from '../geolocation.service';
@@ -8,10 +8,13 @@ import { GeolocationService } from '../geolocation.service';
   templateUrl: './shops.component.html',
   styleUrls: ['./shops.component.scss']
 })
-export class ShopsComponent implements OnInit , OnDestroy{
+export class ShopsComponent implements OnInit{
+
   private shopsUrl = '/api/shops?username='
   private preferredShopsUrl = '/api/preferredShops/add'
+  private dislikedShopsUrl = '/api/shops/dislike'
   private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded','x-auth-token': localStorage.getItem('current-token')});
+  
   private shops: any
   private latitude:number
   private longitude:number
@@ -25,16 +28,20 @@ export class ShopsComponent implements OnInit , OnDestroy{
       function(position) {
         localStorage.setItem('current-latitude',position.coords.latitude)
         localStorage.setItem('current-longitude',position.coords.longitude)
-         console.log("latitude : "+position.coords.latitude) 
-         console.log("longitude : "+position.coords.longitude) 
-         
         },
       function(error) { console.log("error "+error)}
-    )}
-  getShops(latitude:number,longitude:number) {
+  )}
+
+  getShops() {
     let promise = new Promise((resolve, reject) => {
-      if(latitude != 0 && !isNaN(latitude) && !isNaN(longitude) && longitude != 0)
-        this.http.get(this.shopsUrl+localStorage.getItem('current-username')+"&latitude="+latitude+"&longitude="+longitude, {headers: this.headers})
+      if(isNaN(this.latitude) || isNaN(this.longitude)){
+        this.getCoordinates()
+        this.latitude = parseFloat(localStorage.getItem('current-latitude'))
+        this.longitude = parseFloat(localStorage.getItem('current-longitude'))
+        this.total = parseFloat(localStorage.getItem('total'))
+      }
+      if(!isNaN(this.latitude) && !isNaN(this.longitude))
+        this.http.get(this.shopsUrl+localStorage.getItem('current-username')+"&latitude="+this.latitude+"&longitude="+this.longitude, {headers: this.headers})
               .toPromise()
               .then(
                 res => { 
@@ -51,28 +58,21 @@ export class ShopsComponent implements OnInit , OnDestroy{
   }
   
   dislike(id: string){
-    console.log("Dislike  "+ id)
+    let body= "username="+localStorage.getItem('current-username')+"&id="+id
+    this.http.post(this.dislikedShopsUrl,body,{headers: this.headers})
+    .subscribe(res => {
+      this.getShops()
+      console.log("Dislike  "+ id)
+    })
   }
   like(id: string){
     let body= "username="+localStorage.getItem('current-username')+"&id="+id
     this.http.post(this.preferredShopsUrl,body,{headers: this.headers})
     .subscribe(res => {
-      window.location.reload()
-      console.log("added to preferred list ")
+      this.getShops()
     })
   }
   ngOnInit() {
-    this.getCoordinates()
-    this.latitude = parseFloat(localStorage.getItem('current-latitude'))
-    this.longitude = parseFloat(localStorage.getItem('current-longitude'))
-    this.total = parseFloat(localStorage.getItem('total'))
-    this.getShops(this.latitude,this.longitude)
-    console.log('pages: '+this.total)
-  }
-
-  ngOnDestroy(){
-    localStorage.removeItem('current-latitude')
-    localStorage.removeItem('current-longitude')
-    localStorage.removeItem('total')
+    this.getShops()
   }
 }

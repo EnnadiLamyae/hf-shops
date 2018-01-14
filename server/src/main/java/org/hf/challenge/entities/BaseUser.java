@@ -1,6 +1,7 @@
 package org.hf.challenge.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.data.annotation.Id;
@@ -16,7 +17,7 @@ public class BaseUser implements Serializable {
 	private String name;
 	private String createdAt;
 	private  Map<String,Shop> preferredShops = null;
-	private  Map<String,Shop> dislikedShops = null;
+	private  Map<String,LocalDateTime> dislikedShops = null;
 	
 	public BaseUser() {
 		super();
@@ -59,11 +60,11 @@ public class BaseUser implements Serializable {
 		this.preferredShops = preferredShops;
 	}
 
-	public  Map<String,Shop> getDislikedShops() {
+	public  Map<String,LocalDateTime> getDislikedShops() {
 		return dislikedShops;
 	}
 
-	public void setDislikedShops( Map<String,Shop> dislikedShops) {
+	public void setDislikedShops( Map<String,LocalDateTime> dislikedShops) {
 		this.dislikedShops = dislikedShops;
 	}
 	

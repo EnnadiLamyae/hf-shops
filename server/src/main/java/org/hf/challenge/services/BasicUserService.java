@@ -1,6 +1,7 @@
 package org.hf.challenge.services;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class BasicUserService implements UserService {
 	public User create(User user) {
 		user.setCreatedAt(String.valueOf(LocalDateTime.now()));
 		user.setPreferredShops(new HashMap<String,Shop>());
-		user.setDislikedShops(new HashMap<String,Shop>());
+		user.setDislikedShops(new HashMap<String,LocalDateTime>());
         return repository.save(user);
 	}
 

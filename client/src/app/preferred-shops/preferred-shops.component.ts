@@ -8,12 +8,15 @@ import { Http, Headers } from '@angular/http';
   styleUrls: ['./preferred-shops.component.scss']
 })
 export class PreferredShopsComponent implements OnInit {
+
   private preferredShopsUrl = '/api/preferredShops?username='
   private removeShopUrl = '/api/preferredShops/remove'
+  private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded','x-auth-token': localStorage.getItem('current-token')})
+
   private shops: any
   private pageSize = 8
   private total: number
-  private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded','x-auth-token': localStorage.getItem('current-token')});
+  
 
   constructor(private http:Http ) { }
 
@@ -29,8 +32,6 @@ export class PreferredShopsComponent implements OnInit {
     this.http.post(this.removeShopUrl,body,{headers: this.headers})
     .subscribe(res => {
       this.getPreferredShops()
-      window.location.reload()
-
     })
   }
   ngOnInit() {
