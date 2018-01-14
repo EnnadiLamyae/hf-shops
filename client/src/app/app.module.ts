@@ -23,6 +23,7 @@ import { from } from 'rxjs/observable/from';
 import { HomeComponent } from './home/home.component';
 import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
 import { AuthGuardService } from './auth-guard.service';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 
@@ -35,7 +36,8 @@ import { AuthGuardService } from './auth-guard.service';
     SigninComponent,
     ShopsComponent,
     HomeComponent,
-    PreferredShopsComponent
+    PreferredShopsComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

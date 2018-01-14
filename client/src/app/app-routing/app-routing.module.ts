@@ -5,9 +5,11 @@ import { ShopsComponent } from '../shops/shops.component';
 import { HomeComponent } from '../home/home.component';
 import { PreferredShopsComponent } from '../preferred-shops/preferred-shops.component';
 import { AuthGuardService } from '../auth-guard.service';
+import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
 
 const routes: Routes = [
   { path: '',  component: HomeComponent },
+  { path: 'unauthorized' , component: UnauthorizedComponent},
   { path: 'shops',canActivate: [AuthGuardService],  component: ShopsComponent },
   { path: 'preferredShops', canActivate: [AuthGuardService], component: PreferredShopsComponent}
 ];
