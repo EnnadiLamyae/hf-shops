@@ -36,6 +36,10 @@
 		# cd ../client/
 		# npm install
 		# npm start
+	
+	P.S if port 8080 already in use then 
+
+		# fuser -k 4200/tcp
 		
 	The frontend server will run on http://localhost:4200
 	
