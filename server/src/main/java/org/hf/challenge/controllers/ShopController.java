@@ -1,8 +1,5 @@
 package org.hf.challenge.controllers;
 
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +61,20 @@ public class ShopController {
 		List<Object> response = new ArrayList<>();
 		 response.add(result);
 		 response.add(result.size());
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/api/preferredShops/remove",method=RequestMethod.POST)
+	public ResponseEntity<?> removeShop(@RequestParam String username,@RequestParam String id){
+		User user = userService.findByUsername(username);
+    	Map<String,Shop> shops = user.getPreferredShops();
+    	Shop shop = service.find(id);
+    	if(shop != null && shops.containsKey(shop.getId()))
+    		shops.remove(shop.getId());
+		user = userService.update(user.getId(), user);
+		List<Object> response = new ArrayList<>();
+		 response.add(user.getPreferredShops());
+		 response.add(user.getPreferredShops().size());
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 

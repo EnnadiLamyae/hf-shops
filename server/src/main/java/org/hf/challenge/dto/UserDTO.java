@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hf.challenge.entities.Shop;
 
+
 public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = -2188995204060257406L;

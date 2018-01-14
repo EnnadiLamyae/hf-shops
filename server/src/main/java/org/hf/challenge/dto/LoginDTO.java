@@ -2,9 +2,11 @@ package org.hf.challenge.dto;
 
 import java.io.Serializable;
 
+
 public class LoginDTO implements Serializable {
 
 	private static final long serialVersionUID = -2397862632167312186L;
+	
 	private String username;
     private String password;
     

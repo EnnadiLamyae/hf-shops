@@ -9,10 +9,11 @@ import { Http, Headers } from '@angular/http';
 })
 export class PreferredShopsComponent implements OnInit {
   private preferredShopsUrl = '/api/preferredShops?username='
+  private removeShopUrl = '/api/preferredShops/remove'
   private shops: any
   private pageSize = 8
   private total: number
-  private headers = new Headers({'x-auth-token': localStorage.getItem('current-token')});
+  private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded','x-auth-token': localStorage.getItem('current-token')});
 
   constructor(private http:Http ) { }
 
@@ -21,6 +22,15 @@ export class PreferredShopsComponent implements OnInit {
     .subscribe(res => {
       this.shops = res.json()[0]
       this.total = res.json()[1]
+    })
+  }
+  removeShop(id: string){
+    let body = "username="+localStorage.getItem('current-username')+"&id="+id
+    this.http.post(this.removeShopUrl,body,{headers: this.headers})
+    .subscribe(res => {
+      this.getPreferredShops()
+      window.location.reload()
+
     })
   }
   ngOnInit() {
