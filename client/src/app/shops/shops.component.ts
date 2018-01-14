@@ -47,6 +47,8 @@ export class ShopsComponent implements OnInit{
                 res => { 
                   this.shops = res.json()[0]
                   localStorage.setItem('total',res.json()[1])
+                  this.total = parseFloat(localStorage.getItem('total'))
+                  this.pageSize = 8
                   resolve()
                   },
                   msg => { 

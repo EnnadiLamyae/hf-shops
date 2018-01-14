@@ -4,11 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ShopsComponent } from '../shops/shops.component';
 import { HomeComponent } from '../home/home.component';
 import { PreferredShopsComponent } from '../preferred-shops/preferred-shops.component';
+import { AuthGuardService } from '../auth-guard.service';
 
 const routes: Routes = [
   { path: '',  component: HomeComponent },
-  { path: 'shops',  component: ShopsComponent },
-  { path: 'preferredShops',component: PreferredShopsComponent}
+  { path: 'shops',canActivate: [AuthGuardService],  component: ShopsComponent },
+  { path: 'preferredShops', canActivate: [AuthGuardService], component: PreferredShopsComponent}
 ];
 
 @NgModule({

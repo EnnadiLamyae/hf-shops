@@ -22,6 +22,7 @@ import { ShopsComponent } from './shops/shops.component';
 import { from } from 'rxjs/observable/from';
 import { HomeComponent } from './home/home.component';
 import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
+import { AuthGuardService } from './auth-guard.service';
 
 
 
@@ -45,7 +46,7 @@ import { PreferredShopsComponent } from './preferred-shops/preferred-shops.compo
     NgxPaginationModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [GeolocationService,AuthenticationService],
+  providers: [GeolocationService,AuthenticationService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
