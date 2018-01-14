@@ -10,6 +10,7 @@ import org.hf.challenge.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.JwtBuilder;
@@ -21,13 +22,14 @@ public class JsonWebTokenService implements TokenService {
 
 	private static int tokenExpirationTime = 30;
 	private final UserDetailsService userDetailsService;
-	
+	private final BCryptPasswordEncoder encoder;
 	@Value("security.token.secret.key")
     private String tokenKey;
 	
 	@Autowired
-	public JsonWebTokenService(final UserDetailsService userDetailsService) {
+	public JsonWebTokenService(final UserDetailsService userDetailsService,final BCryptPasswordEncoder encoder) {
 	    this.userDetailsService = userDetailsService;
+	    this.encoder = encoder;
 	}
 	
 	public static void setTokenExpirationTime(final int tokenExpirationTime) {
@@ -41,7 +43,7 @@ public class JsonWebTokenService implements TokenService {
         }
         final User user = (User) userDetailsService.loadUserByUsername(username);
         Map<String, Object> tokenData = new HashMap<>();
-        if (password.equals(user.getPassword())) {
+        if (encoder.matches(password, user.getPassword())) {
             tokenData.put("clientType", "user");
             tokenData.put("userID", user.getId());
             tokenData.put("username", user.getUsername());

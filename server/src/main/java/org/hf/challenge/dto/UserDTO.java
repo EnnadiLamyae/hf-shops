@@ -3,7 +3,10 @@ package org.hf.challenge.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hf.challenge.encoder.BCryptPasswordDeserializer;
 import org.hf.challenge.entities.Shop;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 public class UserDTO implements Serializable {
@@ -11,6 +14,7 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = -2188995204060257406L;
 
 	private String username;
+	@JsonDeserialize(using = BCryptPasswordDeserializer.class)
     private String password;
     private String name;
     

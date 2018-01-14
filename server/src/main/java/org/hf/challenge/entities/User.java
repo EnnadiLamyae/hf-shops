@@ -3,9 +3,11 @@ package org.hf.challenge.entities;
 import java.util.Collection;
 import java.util.List;
 
+import org.hf.challenge.encoder.BCryptPasswordDeserializer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class User extends BaseUser implements UserDetails {
 
