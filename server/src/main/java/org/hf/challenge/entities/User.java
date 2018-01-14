@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.hf.challenge.encoder.BCryptPasswordDeserializer;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,6 +15,7 @@ public class User extends BaseUser implements UserDetails {
 	private static final long serialVersionUID = -5240770289592276342L;
 
 	private List<Authority> authorities;
+	@Indexed(unique = true)
     private String username;
     private String password;
     private boolean accountNonExpired;
