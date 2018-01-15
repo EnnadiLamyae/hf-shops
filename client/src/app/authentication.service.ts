@@ -52,7 +52,11 @@ export class AuthenticationService {
     localStorage.removeItem('current-username')
     localStorage.removeItem('current-token')
     localStorage.removeItem('current-connected')
-    console.error('Error', error);
+    if(error._body.indexOf("Authentication error") !== -1)
+      window.alert("Error : Credentials are not correct .")
+    if(error._body.indexOf("E11000 duplicate key error index") !== -1)
+      window.alert("Error : This email is already on use.")
+      // console.error('Error Body Yes');
     return Promise.reject(error.message || error);
   }
 }
