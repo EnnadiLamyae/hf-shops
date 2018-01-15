@@ -10,34 +10,29 @@
                     <i class="fa fa-user-plus fa-4x mb-3 animated rotateIn"></i>
                 </div>
                <form #signupForm="ngForm" (ngSubmit)="onSubmit()">
-
-                <div class="md-form form-sm">
-                    <input mdbActive type="text" id="name"  name="name" [(ngModel)]="user.name" class="form-control"/>
-                    <label for="name">Your Name</label>
-                </div>
-
-                <div class="md-form form-sm">
-                    <input mdbActive type="text" id="username" #username="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
-                    name="username"  [(ngModel)]="user.username" class="form-control" required [ngClass]="{
-                        'text-danger': username.invalid && (username.dirty || username.touched), 
-                        'text-success': username.valid && (username.dirty || username.touched)
-                             }"/>
-                    <label for="username">Your Email </label>
-                </div>
-
-                <div class="md-form form-sm">
-                    <input mdbActive autocomplete type="password" id="password" #password="ngModel" minlength="8" name="password" 
-                    [(ngModel)]="user.password" class="form-control" required [ngClass]="{
-                        'text-danger': password.invalid && (password.dirty || password.touched), 
-                        'text-success': password.valid && (password.dirty || password.touched)
-                             }"/>
-                    <label for="password">Your password</label>
-                </div>
-
-                <div class="text-center mt-2">
-                    <button type="submit" (click)="style.hide()"  [disabled]="signupForm.invalid" class="btn btn-default waves-light" mdbRippleRadius>Sign up <i class="fa fa-user-plus ml-1"></i></button>
-                </div>
-
+                    <div class="md-form form-sm">
+                        <input mdbActive type="text" id="name"  name="name" [(ngModel)]="user.name" class="form-control"/>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="md-form form-sm">
+                        <input mdbActive type="text" id="username" #username="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+                        name="username"  [(ngModel)]="user.username" class="form-control" required [ngClass]="{
+                            'text-danger': username.invalid && (username.dirty || username.touched), 
+                            'text-success': username.valid && (username.dirty || username.touched)
+                                 }"/>
+                        <label for="username">Your Email </label>
+                    </div>
+                    <div class="md-form form-sm">
+                        <input mdbActive autocomplete type="password" id="password" #password="ngModel" minlength="8" name="password" 
+                        [(ngModel)]="user.password" class="form-control" required [ngClass]="{
+                            'text-danger': password.invalid && (password.dirty || password.touched), 
+                            'text-success': password.valid && (password.dirty || password.touched)
+                                 }"/>
+                        <label for="password">Your password</label>
+                    </div>
+                    <div class="text-center mt-2">
+                        <button type="submit" (click)="style.hide()"  [disabled]="signupForm.invalid" class="btn btn-default waves-light" mdbRippleRadius>Sign up <i class="fa fa-user-plus ml-1"></i></button>
+                    </div>
                </form>
             </div>
         </div>

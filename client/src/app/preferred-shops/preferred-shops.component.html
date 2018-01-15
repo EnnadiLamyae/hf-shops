@@ -1,50 +1,47 @@
 <div class="container mt-5">
-
-  <!--Section: Products v.1-->
   <section class="section pb-3">
-          <!--Section heading-->
-          <h1 class="section-heading h1 pt-4 text-center"><span class="cyan-text font-bold" data-wow-delay="0.9s" style="color:#30cfc0">
-                  Your
-              </span> 
-              Preferred 
-              <span class="cyan-text font-bold" data-wow-delay="0.9s"style="color:#30cfc0">
-                  Shops
-              </span></h1>
-              <div class="text-right col-6 offset-6">
-                  <label for="pageSize" class="col-4"> Items per page </label>
-                  <input type="text" class="input-alternate col-2" value="8" id="pageSize" name="pageSize" [(ngModel)]="pageSize" placeholder="Item per page" value="5">
-              </div>
-          <div class="row">
-              <div class="col-lg-3 col-md-6 mb-r" *ngFor="let shop of shops | paginate: { itemsPerPage: pageSize, currentPage: p,totalItems: total }">
-                  <div class="card card-cascade narrower">
-                      <div class="view overlay hm-white-slight">
-                          <img src="{{shop.picture}}" class="img-thumbnail mx-auto d-block" alt="">
-                          <a>
-                              <div class="mask waves-effect waves-light" mdbRippleRadius></div>
-                          </a>
-                      </div>
-                      <div class="card-body text-center">
-                          <a href="" class="text-muted">
-                              <h5>{{shop.email}}</h5>
-                              <span class="mr2"> <i class="fa fa-map-marker">{{shop.city}}</i></span>
-                          </a>
-                          <h4 class="card-title"><strong><a href="">{{shop.name}}</a></strong></h4>
-                          <div class="card-footer">
-                              <div class="right">
-                                  <button  (click)="removeShop(shop.id)" type="button" class="btn btn-danger" mdbRippleRadius><i class="fa fa-trash-o"></i>&nbsp;Remove</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-6 offset-3">
-            <pagination-controls (pageChange)="p = $event" 
-        directionLinks="true"
-        autoHide="true"
-        previousLabel="Previous"
-        nextLabel="Next">
-        </pagination-controls>
+        <h1 class="section-heading h1 pt-4 text-center"><span class="cyan-text font-bold" data-wow-delay="0.9s" style="color:#30cfc0">
+                Your
+            </span> 
+            Preferred 
+            <span class="cyan-text font-bold" data-wow-delay="0.9s"style="color:#30cfc0">
+                Shops
+            </span></h1>
+        <div class="text-right col-6 offset-6">
+            <label for="pageSize" class="col-4"> Items per page </label>
+            <input type="text" class="input-alternate col-2" value="8" id="pageSize" name="pageSize" [(ngModel)]="pageSize" placeholder="Item per page" value="5">
         </div>
-      </section>        
-  </div>
+            <div class="row">
+                  <div class="col-lg-3 col-md-6 mb-r" *ngFor="let shop of shops | paginate: { itemsPerPage: pageSize, currentPage: p,totalItems: total }">
+                        <div class="card card-cascade narrower">
+                                <div class="view overlay hm-white-slight">
+                                    <img src="{{shop.picture}}" class="img-thumbnail mx-auto d-block" alt="">
+                                    <a>
+                                        <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                                    </a>
+                                </div>
+                                <div class="card-body text-center">
+                                    <a href="" class="text-muted">
+                                        <h5>{{shop.email}}</h5>
+                                        <span class="mr2"> <i class="fa fa-map-marker">{{shop.city}}</i></span>
+                                    </a>
+                                    <h4 class="card-title"><strong><a href="">{{shop.name}}</a></strong></h4>
+                                    <div class="card-footer">
+                                        <div class="right">
+                                            <button  (click)="removeShop(shop.id)" type="button" class="btn btn-danger" mdbRippleRadius><i class="fa fa-trash-o"></i>&nbsp;Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                  </div>
+            </div>
+            <div class="col-6 offset-3">
+                <pagination-controls (pageChange)="p = $event" 
+                    directionLinks="true"
+                    autoHide="true"
+                    previousLabel="Previous"
+                    nextLabel="Next">
+                </pagination-controls>
+            </div>
+    </section>        
+</div>

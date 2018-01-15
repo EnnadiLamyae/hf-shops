@@ -35,7 +35,6 @@ export class AuthenticationService {
                localStorage.setItem("current-connected", 'true')
                this.router.navigate(['/shops'])
                window.location.reload();
-              console.log("Token : "+ res.json().token)
             })
             .catch(this.handleError)
     

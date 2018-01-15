@@ -24,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { PreferredShopsComponent } from './preferred-shops/preferred-shops.component';
 import { AuthGuardService } from './auth-guard.service';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -37,7 +38,8 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     ShopsComponent,
     HomeComponent,
     PreferredShopsComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
