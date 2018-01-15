@@ -19,13 +19,17 @@
 		# git clone https://github.com/EnnadiLamyae/hf-shops.git
 		# cd hf-shops/
 		
+	P.S : you must create a 2dsphere Index in your database .
+	
+		# db.shops.createIndex( { location : "2dsphere" } )
+		
 2. Build and run the backend app using maven
 		
 		# cd server/ 
 		# mvn clean install
 		# mvn spring-boot:run
 
-	P.S if port 8080 already in use then 
+	P.S : if port 8080 already in use then 
 
 		# fuser -k 8080/tcp
 
@@ -37,7 +41,7 @@
 		# npm install
 		# npm start
 	
-	P.S if port 4200 already in use then 
+	P.S : if port 4200 already in use then 
 
 		# fuser -k 4200/tcp
 		
