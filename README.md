@@ -37,7 +37,7 @@
 		# npm install
 		# npm start
 	
-	P.S if port 8080 already in use then 
+	P.S if port 4200 already in use then 
 
 		# fuser -k 4200/tcp
 		
