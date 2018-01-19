@@ -33,9 +33,8 @@ export class AuthenticationService {
                localStorage.setItem("current-username",user.username)
                localStorage.setItem("current-token",res.json().token)
                localStorage.setItem("current-connected","true")
-               console.log(localStorage.getItem("current-connected") === "true")
                this.router.navigate(['/shops'])
-              // window.location.reload();
+               window.location.reload();
             })
             .catch(this.handleError)
     
@@ -57,7 +56,6 @@ export class AuthenticationService {
       window.alert("Error : Credentials are not correct .")
     if(error._body.indexOf("E11000 duplicate key error index") !== -1)
       window.alert("Error : This email is already on use.")
-      // console.error('Error Body Yes');
     return Promise.reject(error.message || error);
   }
 }
