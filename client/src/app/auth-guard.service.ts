@@ -12,7 +12,7 @@ export class AuthGuardService implements CanActivate{
     return this.checkLogin(url);
   }
   checkLogin(url){
-    if(localStorage.getItem("current-connected") === 'true')
+    if(localStorage.getItem("current-connected") === "true")
       return true
     this.router.navigate(['/unauthorized'])
     return false

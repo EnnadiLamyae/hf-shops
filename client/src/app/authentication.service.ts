@@ -32,9 +32,10 @@ export class AuthenticationService {
             .then(res => {
                localStorage.setItem("current-username",user.username)
                localStorage.setItem("current-token",res.json().token)
-               localStorage.setItem("current-connected", 'true')
+               localStorage.setItem("current-connected","true")
+               console.log(localStorage.getItem("current-connected") === "true")
                this.router.navigate(['/shops'])
-               window.location.reload();
+              // window.location.reload();
             })
             .catch(this.handleError)
     

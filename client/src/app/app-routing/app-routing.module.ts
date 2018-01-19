@@ -11,9 +11,9 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 const routes: Routes = [
   { path: '',  component: HomeComponent },
   { path: 'unauthorized' , component: UnauthorizedComponent},
-  { path: '**',component: PageNotFoundComponent},
   { path: 'shops',canActivate: [AuthGuardService],  component: ShopsComponent },
-  { path: 'preferredShops', canActivate: [AuthGuardService], component: PreferredShopsComponent}
+  { path: 'preferredShops', canActivate: [AuthGuardService], component: PreferredShopsComponent},
+  { path: '**',component: PageNotFoundComponent}
 ];
 
 @NgModule({
